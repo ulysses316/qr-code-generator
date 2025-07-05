@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: Linter fix
+      run: bun lint:fix
+
+    - name: Create build directory
+      run: bun run build
