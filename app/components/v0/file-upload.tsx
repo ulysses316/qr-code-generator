@@ -5,12 +5,19 @@ import { Upload, X, type File } from "lucide-react"
 import { Button } from "../ui/button"
 import { Card, CardContent } from "../ui/card"
 import { Badge } from "~/components/ui/badge"
+import { convertImageToDataUrl } from "~/lib/utils"
+import type { QRAction } from "../qr/qrReducer"
 
 interface FileWithPreview extends File {
   preview?: string
 }
 
-export function FileUpload() {
+type FileUploadProps = {
+  accept: "image/*" | "image/gif";
+  setImage: (action: QRAction) => void;
+}
+
+export function FileUpload({ accept, setImage }: FileUploadProps) {
   const [file, setFile] = useState<FileWithPreview | null>(null)
   const [isDragOver, setIsDragOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -44,9 +51,7 @@ export function FileUpload() {
     if (newFiles.length > 0) {
       const selectedFile = newFiles[0] as FileWithPreview
 
-      // Solo procesar si es una imagen
       if (selectedFile.type.startsWith("image/")) {
-        // Limpiar preview anterior si existe
         if (file?.preview) {
           URL.revokeObjectURL(file.preview)
         }
@@ -74,10 +79,12 @@ export function FileUpload() {
     return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
   }
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (file) {
-      console.log("Subiendo imagen:", file)
-      alert(`Subiendo imagen: ${file.name}`)
+      const dataUrl = await convertImageToDataUrl(file)
+      console.log(dataUrl);
+
+      setImage({ type: "SET_IMAGE", payload: dataUrl })
     }
   }
 
@@ -89,24 +96,18 @@ export function FileUpload() {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 space-y-4">
-      <div className="text-center space-y-2">
-        <h2 className="text-2xl font-bold">Subir Imagen</h2>
-        <p className="text-muted-foreground">Arrastra y suelta tu imagen aquí o haz clic para seleccionar</p>
-      </div>
-
+    <div className="w-full max-w-2xl mx-auto px-6">
       {/* Zona de Drop */}
       <Card
-        className={`border-2 border-dashed transition-colors cursor-pointer ${
-          isDragOver ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-primary/50"
-        }`}
+        className={`border-2 border-dashed transition-colors cursor-pointer ${isDragOver ? "border-primary bg-primary/5" : "border-muted-foreground/25 hover:border-primary/50"
+          }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
       >
-        <CardContent className="flex flex-col items-center justify-center py-12 px-6">
-          <Upload className={`h-12 w-12 mb-4 ${isDragOver ? "text-primary" : "text-muted-foreground"}`} />
+        <CardContent className="flex flex-col items-center justify-center  px-6 ">
+          <Upload className={`h-5 w-5 mb-4 ${isDragOver ? "text-primary" : "text-muted-foreground"}`} />
           <div className="text-center space-y-2">
             <p className="text-lg font-medium">{isDragOver ? "Suelta la imagen aquí" : "Arrastra una imagen aquí"}</p>
             <p className="text-sm text-muted-foreground">
@@ -117,14 +118,14 @@ export function FileUpload() {
         </CardContent>
       </Card>
 
-      <input ref={fileInputRef} type="file" className="hidden" onChange={handleFileSelect} accept="image/*" />
+      <input ref={fileInputRef} type="file" className="hidden" onChange={handleFileSelect} accept={accept} />
 
       {file && (
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-medium">Imagen seleccionada</h3>
-              <Button variant="outline" size="sm" onClick={clearAll}>
+              <Button type="button" variant="outline" size="sm" onClick={clearAll}>
                 Eliminar
               </Button>
             </div>
@@ -151,13 +152,13 @@ export function FileUpload() {
               </div>
 
               {/* Botón eliminar */}
-              <Button variant="ghost" size="sm" onClick={removeFile} className="flex-shrink-0 h-8 w-8 p-0">
+              <Button type="button" variant="ghost" size="sm" onClick={removeFile} className="flex-shrink-0 h-8 w-8 p-0">
                 <X className="h-4 w-4" />
               </Button>
             </div>
 
             <div className="mt-4">
-              <Button onClick={handleUpload} className="w-full">
+              <Button type="button" onClick={handleUpload} className="w-full">
                 <Upload className="h-4 w-4 mr-2" />
                 Subir imagen
               </Button>

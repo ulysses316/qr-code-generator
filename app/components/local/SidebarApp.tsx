@@ -1,6 +1,7 @@
 import {
 	BookText,
 	CalendarCheck2,
+	Home,
 	IdCard,
 	IdCardLanyard,
 	Link2,
@@ -23,8 +24,13 @@ import {
 
 const items = [
 	{
+		title: "Home",
+		url: "/",
+		icon: Home,
+	},
+	{
 		title: "URL",
-		url: "#",
+		url: "/url",
 		icon: Link2,
 	},
 	{

@@ -1,4 +1,4 @@
-import { AwesomeQRCode } from "@awesomeqr/react";
+import QRStylus from "~/components/local/QRStylus";
 
 export function meta() {
 	return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];
@@ -7,14 +7,8 @@ export function meta() {
 export default function Home() {
 	return (
 		<main className="flex h-screen w-full items-center justify-center">
-			<div className="h-63 w-63">
-				<AwesomeQRCode
-					options={{
-						text: "https://www.google.com",
-						size: 250,
-						version: 2,
-					}}
-				/>
+			<div className="h-screen w-full">
+				<QRStylus options={{ data: "hola como estas" }} />
 			</div>
 		</main>
 	);
