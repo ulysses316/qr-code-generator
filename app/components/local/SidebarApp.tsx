@@ -35,7 +35,7 @@ const items = [
 	},
 	{
 		title: "Wifi",
-		url: "#",
+		url: "/wifi",
 		icon: Wifi,
 	},
 	{

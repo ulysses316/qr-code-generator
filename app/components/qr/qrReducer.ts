@@ -17,7 +17,7 @@ export type QRAction =
 	| { type: "SET_DEFAULT" };
 
 export const initialQROptions: Partial<Options> = {
-	type: "canvas",
+	type: "svg",
 	shape: "square",
 	width: 300,
 	height: 300,

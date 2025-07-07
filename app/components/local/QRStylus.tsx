@@ -42,14 +42,44 @@ export default function QRStylus({ options }: { options: Partial<Options> }) {
 		loadQRCode();
 	}, [options]);
 
-	const handleDownload = () => {
-		if (isReady && qrInstance.current) {
-			qrInstance.current.download({
-				name: "qr-code.png",
-				extension: "png", // puedes cambiar a "png" si lo necesitas
-			});
+const handleDownload = async () => {
+	if (!isReady || !qrRef.current) return;
+
+	const svgElement = qrRef.current.querySelector("svg");
+	if (!svgElement) return;
+
+	// Serializar SVG
+	const svgString = new XMLSerializer().serializeToString(svgElement);
+	const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
+	const url = URL.createObjectURL(svgBlob);
+
+	// Crear imagen temporal
+	const img = new Image();
+	img.onload = () => {
+		// Dibujar en canvas y exportar a PNG
+		const canvas = document.createElement("canvas");
+		canvas.width = 900;
+		canvas.height = 900;
+		const ctx = canvas.getContext("2d");
+		if (ctx) {
+			ctx.fillStyle = "#fff";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+			canvas.toBlob((blob) => {
+				if (blob) {
+					const pngUrl = URL.createObjectURL(blob);
+					const a = document.createElement("a");
+					a.href = pngUrl;
+					a.download = "qr-code.png";
+					a.click();
+					URL.revokeObjectURL(pngUrl);
+				}
+			}, "image/png");
 		}
+		URL.revokeObjectURL(url);
 	};
+	img.src = url;
+};
 
 	return (
 		<div
