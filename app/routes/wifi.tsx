@@ -2,7 +2,6 @@
 // import FormCustom from "~/components/forms/custom/FormCustom";
 // import FormUrl from "~/components/forms/data/FormUrl";
 
-import ColorsPicker from "~/components/forms/ColorsPicker";
 import QRCustomizeContainer from "~/components/local/QRCustomizeContainer";
 import QRDataContainer from "~/components/local/QRDataContainer";
 // import QRStylus from "~/components/local/QRStylus";

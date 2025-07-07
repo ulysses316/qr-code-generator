@@ -9,6 +9,7 @@ import type {
 } from "qr-code-styling";
 import type React from "react";
 import { useEffect, useReducer } from "react";
+import { colorOptionsReducer, initialColorOptions } from "~/components/forms/ColorReducer";
 import type { QRAction } from "~/components/qr/qrReducer";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -16,7 +17,6 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { FileUpload } from "~/components/v0/file-upload";
 import { getMinimumQRVersion } from "~/lib/utils";
-import { colorOptionsReducer, initialColorOptions } from "~/components/forms/ColorReducer";
 import ColorsPicker from "../ColorsPicker";
 
 type FormCustomAwesomeProps = {
@@ -60,7 +60,7 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 				},
 			},
 		});
-	}, [colorsDots])
+	}, [colorsDots]);
 
 	// biome-ignore lint : Only want to execute this code when data change
 	useEffect(() => {
@@ -82,7 +82,7 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 				},
 			},
 		});
-	}, [cornerSquareColors])
+	}, [cornerSquareColors]);
 
 	// biome-ignore lint : Only want to execute this code when data change
 	useEffect(() => {
@@ -104,7 +104,7 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 				},
 			},
 		});
-	}, [cornerDotsColors])
+	}, [cornerDotsColors]);
 
 	// biome-ignore lint : Only want to execute this code when data change
 	useEffect(() => {
@@ -126,10 +126,7 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 				},
 			},
 		});
-	}, [bgColors])
-
-
-
+	}, [bgColors]);
 
 	return (
 		<form className="grid max-h-[calc(100dvh-552px)] grid-cols-1 gap-4 overflow-y-scroll">
@@ -168,10 +165,8 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 							dispatch({
 								type: "SET_IMAGEOPTIONS",
 								payload: { ...QROptions.imageOptions, hideBackgroundDots: e.target.checked },
-							})
-						}
-
-						}
+							});
+						}}
 					/>
 					<div className="grid gap-2">
 						<Label htmlFor="terms-2">Ocultar los puntos detras de la imagen</Label>
@@ -203,7 +198,12 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 						step={0.1}
 						name={"Margin"}
 						value={QROptions.imageOptions?.imageSize}
-						onChange={(e) => dispatch({ type: "SET_IMAGEOPTIONS", payload: { ...QROptions.imageOptions, imageSize: Number(e.target.value) } })}
+						onChange={(e) =>
+							dispatch({
+								type: "SET_IMAGEOPTIONS",
+								payload: { ...QROptions.imageOptions, imageSize: Number(e.target.value) },
+							})
+						}
 					/>
 				</div>
 
@@ -216,7 +216,12 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 						step={1}
 						name={"Margin"}
 						value={QROptions.imageOptions?.margin}
-						onChange={(e) => dispatch({ type: "SET_IMAGEOPTIONS", payload: { ...QROptions.imageOptions, margin: Number(e.target.value) } })}
+						onChange={(e) =>
+							dispatch({
+								type: "SET_IMAGEOPTIONS",
+								payload: { ...QROptions.imageOptions, margin: Number(e.target.value) },
+							})
+						}
 					/>
 				</div>
 
