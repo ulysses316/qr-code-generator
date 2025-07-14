@@ -15,7 +15,7 @@ export default function ColorsPicker({ colors, dispatch }: ColorPickerComponentP
 
 	return (
 		<div className="flex items-center justify-between">
-			<div className="flex items-center">
+			<div className="flex flex-col items-center">
 				{colors.map((colorItem) => (
 					<ColorPickerItem
 						key={colorItem.id}

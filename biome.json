@@ -105,6 +105,11 @@
 				"noWith": "error",
 				"useGetterReturn": "error",
 				"useNamespaceKeyword": "error"
+			},
+			"a11y": {
+				"recommended": true,
+				"noStaticElementInteractions": "off",
+				"useKeyWithClickEvents": "off"
 			}
 		}
 	},

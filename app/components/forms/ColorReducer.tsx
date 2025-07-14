@@ -10,7 +10,7 @@ export type ColorAction =
 	| { type: "REMOVE_COLOR"; payload: { id: string } }
 	| { type: "ADD_COLOR"; payload: { color: string; offset: number } };
 
-export const initialColorOptions: ColorPickerItemProps[] = [{ id: "color-0", color: "#000000", offset: 0 }];
+export const initialColorOptions: ColorPickerItemProps[] = [{ id: "color-0", color: "#000000", offset: 0.5 }];
 
 export function colorOptionsReducer(state: ColorPickerItemProps[], action: ColorAction): ColorPickerItemProps[] {
 	switch (action.type) {

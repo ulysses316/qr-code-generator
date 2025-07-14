@@ -68,6 +68,7 @@ export function FileUpload({ accept, setImage }: FileUploadProps) {
     if (file?.preview) {
       URL.revokeObjectURL(file.preview)
     }
+    setImage({ type: "SET_IMAGE", payload: "" })
     setFile(null)
   }
 
@@ -92,6 +93,7 @@ export function FileUpload({ accept, setImage }: FileUploadProps) {
     if (file?.preview) {
       URL.revokeObjectURL(file.preview)
     }
+    setImage({ type: "SET_IMAGE", payload: "" })
     setFile(null)
   }
 

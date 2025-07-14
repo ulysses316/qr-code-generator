@@ -42,7 +42,7 @@ export const initialQROptions: Partial<Options> = {
 		gradient: {
 			type: "linear",
 			rotation: 0,
-			colorStops: [{ offset: 0.5, color: "#1977f3" }],
+			colorStops: [{ offset: 0.5, color: "#000000" }],
 		},
 		roundSize: true,
 	},
@@ -52,7 +52,7 @@ export const initialQROptions: Partial<Options> = {
 		gradient: {
 			type: "linear",
 			rotation: 0,
-			colorStops: [{ offset: 0, color: "#ff0000" }],
+			colorStops: [{ offset: 0, color: "#000000" }],
 		},
 	},
 	cornersDotOptions: {
@@ -61,11 +61,7 @@ export const initialQROptions: Partial<Options> = {
 		gradient: {
 			type: "linear",
 			rotation: 0,
-			colorStops: [
-				{ offset: 0.2, color: "#ff0000" },
-				{ offset: 0.5, color: "#00ff00" },
-				{ offset: 0.8, color: "#0000ff" },
-			],
+			colorStops: [{ offset: 0.2, color: "#000000" }],
 		},
 	},
 	backgroundOptions: {

@@ -1,4 +1,4 @@
-import QRStylus from "~/components/local/QRStylus";
+import QRStylus from "~/components/qr/QRStylus";
 
 export function meta() {
 	return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];

@@ -28,7 +28,9 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 	const [colorsDots, dispatchDots] = useReducer(colorOptionsReducer, initialColorOptions);
 	const [cornerSquareColors, dispatchCornerSquareColors] = useReducer(colorOptionsReducer, initialColorOptions);
 	const [cornerDotsColors, dispatchCornerDotsColors] = useReducer(colorOptionsReducer, initialColorOptions);
-	const [bgColors, dispatchBgColors] = useReducer(colorOptionsReducer, initialColorOptions);
+	const [bgColors, dispatchBgColors] = useReducer(colorOptionsReducer, [
+		{ id: "color-0", color: "#ffffff", offset: 0 },
+	]);
 
 	// biome-ignore lint : Only want to execute this code when data change
 	useEffect(() => {
