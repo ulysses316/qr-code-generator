@@ -1,5 +1,5 @@
+import { useState, useEffect } from "react";
 import { ChevronRight, Circle, Image, Palette, Settings, Square, TableOfContents, X } from "lucide-react";
-import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Card } from "../ui/card";
 
@@ -11,6 +11,7 @@ type OptionSelectionProps = {
 };
 
 export default function OptionSelection({ title, description, icon, children }: OptionSelectionProps) {
+	const [documentExist, setDocumentExist] = useState<boolean>(false)
 	const [showModal, setShowModal] = useState<boolean>(false);
 	const icons = {
 		settings: Settings,
@@ -22,6 +23,14 @@ export default function OptionSelection({ title, description, icon, children }: 
 	};
 
 	const IconComponent = icons[icon];
+
+	useEffect(() => {
+	  setDocumentExist(true);
+	  return () => {
+		setDocumentExist(false);
+	  }
+	}, [])
+	
 
 	return (
 		<>
@@ -43,7 +52,7 @@ export default function OptionSelection({ title, description, icon, children }: 
 				<ChevronRight />
 			</div>
 
-			{children &&
+			{children && documentExist &&
 				createPortal(
 					<div
 						className={`fixed top-0 left-0 z-10 flex h-screen w-screen items-center justify-center p-4 transition-all duration-300 ${showModal ? "translate-x-0" : "translate-x-full"}`}
