@@ -1,10 +1,12 @@
-import type { ErrorCorrectionLevel, Options, ShapeType } from "qr-code-styling";
+import { useEffect } from "react";
+import type { ErrorCorrectionLevel, Options, ShapeType, TypeNumber } from "qr-code-styling";
 import type React from "react";
 import type { QRAction } from "~/components/qr/qrReducer";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
+import { getMinimumQRVersion } from "~/lib/utils";
 
 type FormCustomAwesomeProps = {
 	QROptions: Partial<Options>;
@@ -12,6 +14,16 @@ type FormCustomAwesomeProps = {
 };
 
 export default function BasicConf({ QROptions, dispatch }: FormCustomAwesomeProps) {
+	// biome-ignore lint : Only want to execute this code when data change
+	useEffect(() => {
+		const minQRVersion = getMinimumQRVersion(QROptions.data);
+		dispatch({
+			type: "SET_QROPTIONS",
+			payload: { ...QROptions.qrOptions, typeNumber: Number(minQRVersion) as TypeNumber },
+		});
+	}, [QROptions.data]);
+
+
 	return (
 		<form className="grid grid-cols-1 gap-4 overflow-y-scroll">
 			<CardHeader>
@@ -75,6 +87,23 @@ export default function BasicConf({ QROptions, dispatch }: FormCustomAwesomeProp
 							<SelectItem value="H">Muy Alto (H) - 30%</SelectItem>
 						</SelectContent>
 					</Select>
+				</div>
+
+				<div className="col-span-2">
+					<Label className="mb-1">Version</Label>
+					<Input
+						type="number"
+						name={"typenumber"}
+						value={QROptions.qrOptions?.typeNumber}
+						min={getMinimumQRVersion(QROptions.data, QROptions.qrOptions?.errorCorrectionLevel)}
+						max={40}
+						onChange={(e) =>
+							dispatch({
+								type: "SET_QROPTIONS",
+								payload: { ...QROptions.qrOptions, typeNumber: Number(e.target.value) as TypeNumber },
+							})
+						}
+					/>
 				</div>
 			</CardContent>
 		</form>

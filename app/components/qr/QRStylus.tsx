@@ -4,6 +4,7 @@ import type { Options } from "qr-code-styling";
 import { useEffect, useRef, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 
 export default function QRStylus({ options }: { options: Partial<Options> }) {
 	const qrRef = useRef<HTMLDivElement | null>(null);
@@ -86,6 +87,7 @@ export default function QRStylus({ options }: { options: Partial<Options> }) {
 			className={`relative mb-4 grid w-full grid-cols-1 justify-items-center gap-4 bg-sidebar-foreground py-6 ${!theme && "dark"}`}
 		>
 			<div ref={qrRef}></div>
+			{!isReady && <Skeleton className="w-[300px] h-[300px]" />}
 			<Button variant={"secondary"} onClick={handleDownload} type="button" disabled={!isReady}>
 				Descargar
 			</Button>

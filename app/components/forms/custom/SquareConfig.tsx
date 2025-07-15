@@ -1,4 +1,4 @@
-import type { CornerSquareType, DotType, Options } from "qr-code-styling";
+import type { CornerSquareType, DotType, GradientType, Options } from "qr-code-styling";
 import type React from "react";
 import { useEffect, useReducer } from "react";
 import { colorOptionsReducer, initialColorOptions } from "~/components/forms/ColorReducer";
@@ -8,6 +8,7 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Separator } from "~/components/ui/separator";
 import ColorsPicker from "../ColorsPicker";
+import { Slider } from "~/components/ui/slider";
 
 type FormCustomAwesomeProps = {
 	QROptions: Partial<Options>;
@@ -112,6 +113,33 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 					<ColorsPicker colors={cornerSquareColors} dispatch={dispatchCornerSquareColors} />
 				</div>
 
+				<div className="col-span-2 space-y-3">
+					<Label htmlFor="backgroundRound">Rotacion del background</Label>
+					<div className="space-y-3">
+						<Slider
+							value={[QROptions.cornersSquareOptions?.gradient?.rotation || 0]}
+							onValueChange={(value) => {
+								if (!QROptions?.cornersSquareOptions?.gradient) return;
+								const { colorStops, type } = QROptions.cornersSquareOptions.gradient
+								dispatch({
+									type: "SET_CORNERSSQUAREOPTIONS",
+									payload: { ...QROptions.cornersSquareOptions, gradient: { colorStops: colorStops, type: type, rotation: Number(value) } },
+								})
+							}
+							}
+							max={180}
+							min={0}
+							step={1}
+							className="w-full"
+						/>
+						<div className="flex justify-between text-muted-foreground text-xs">
+							<span>0°</span>
+							<span className="font-medium">{QROptions.cornersSquareOptions?.gradient?.rotation || 0}</span>
+							<span>180°</span>
+						</div>
+					</div>
+				</div>
+
 				<Separator className="col-span-2" />
 
 				<div className="my-4 flex items-center gap-2">
@@ -148,6 +176,54 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 				<div className="col-span-2">
 					<Label className="font-medium text-sm">Color de los puntos</Label>
 					<ColorsPicker colors={cornerDotsColors} dispatch={dispatchCornerDotsColors} />
+				</div>
+
+
+				<Select
+					value={QROptions.cornersDotOptions?.gradient?.type}
+					onValueChange={(value) => {
+						const colorStops = QROptions.cornersDotOptions?.gradient?.colorStops
+						if (!colorStops) return;
+						dispatch({
+							type: "SET_CORNERSDOTOPTIONS",
+							payload: { ...QROptions.cornersDotOptions, gradient: { colorStops, type: value as GradientType } },
+						});
+					}}
+				>
+					<SelectTrigger className="w-full col-span-2">
+						<SelectValue placeholder="Nivel de corrección" />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value="linear">Lineal</SelectItem>
+						<SelectItem value="radial">Radial</SelectItem>
+					</SelectContent>
+				</Select>
+
+				<div className="col-span-2 space-y-3">
+					<Label htmlFor="backgroundRound">Rotacion del background</Label>
+					<div className="space-y-3">
+						<Slider
+							value={[QROptions.cornersDotOptions?.gradient?.rotation || 0]}
+							onValueChange={(value) => {
+								if (!QROptions?.cornersDotOptions?.gradient) return;
+								const { colorStops, type } = QROptions.cornersDotOptions.gradient
+								dispatch({
+									type: "SET_CORNERSDOTOPTIONS",
+									payload: { ...QROptions.cornersDotOptions, gradient: { colorStops: colorStops, type: type, rotation: Number(value) } },
+								})
+							}
+							}
+							max={180}
+							min={0}
+							step={1}
+							className="w-full"
+						/>
+						<div className="flex justify-between text-muted-foreground text-xs">
+							<span>0°</span>
+							<span className="font-medium">{QROptions.cornersDotOptions?.gradient?.rotation || 0}</span>
+							<span>180°</span>
+						</div>
+					</div>
 				</div>
 			</CardContent>
 		</form>
