@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import type { ErrorCorrectionLevel, Options, ShapeType, TypeNumber } from "qr-code-styling";
 import type React from "react";
+import { useEffect } from "react";
 import type { QRAction } from "~/components/qr/qrReducer";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
@@ -22,7 +22,6 @@ export default function BasicConf({ QROptions, dispatch }: FormCustomAwesomeProp
 			payload: { ...QROptions.qrOptions, typeNumber: Number(minQRVersion) as TypeNumber },
 		});
 	}, [QROptions.data]);
-
 
 	return (
 		<form className="grid grid-cols-1 gap-4 overflow-y-scroll">

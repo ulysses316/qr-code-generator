@@ -7,8 +7,8 @@ import { CardContent, CardDescription, CardHeader, CardTitle } from "~/component
 import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Separator } from "~/components/ui/separator";
-import ColorsPicker from "../ColorsPicker";
 import { Slider } from "~/components/ui/slider";
+import ColorsPicker from "../ColorsPicker";
 
 type FormCustomAwesomeProps = {
 	QROptions: Partial<Options>;
@@ -120,13 +120,15 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 							value={[QROptions.cornersSquareOptions?.gradient?.rotation || 0]}
 							onValueChange={(value) => {
 								if (!QROptions?.cornersSquareOptions?.gradient) return;
-								const { colorStops, type } = QROptions.cornersSquareOptions.gradient
+								const { colorStops, type } = QROptions.cornersSquareOptions.gradient;
 								dispatch({
 									type: "SET_CORNERSSQUAREOPTIONS",
-									payload: { ...QROptions.cornersSquareOptions, gradient: { colorStops: colorStops, type: type, rotation: Number(value) } },
-								})
-							}
-							}
+									payload: {
+										...QROptions.cornersSquareOptions,
+										gradient: { colorStops: colorStops, type: type, rotation: Number(value) },
+									},
+								});
+							}}
 							max={180}
 							min={0}
 							step={1}
@@ -178,11 +180,10 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 					<ColorsPicker colors={cornerDotsColors} dispatch={dispatchCornerDotsColors} />
 				</div>
 
-
 				<Select
 					value={QROptions.cornersDotOptions?.gradient?.type}
 					onValueChange={(value) => {
-						const colorStops = QROptions.cornersDotOptions?.gradient?.colorStops
+						const colorStops = QROptions.cornersDotOptions?.gradient?.colorStops;
 						if (!colorStops) return;
 						dispatch({
 							type: "SET_CORNERSDOTOPTIONS",
@@ -190,7 +191,7 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 						});
 					}}
 				>
-					<SelectTrigger className="w-full col-span-2">
+					<SelectTrigger className="col-span-2 w-full">
 						<SelectValue placeholder="Nivel de corrección" />
 					</SelectTrigger>
 					<SelectContent>
@@ -206,13 +207,15 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 							value={[QROptions.cornersDotOptions?.gradient?.rotation || 0]}
 							onValueChange={(value) => {
 								if (!QROptions?.cornersDotOptions?.gradient) return;
-								const { colorStops, type } = QROptions.cornersDotOptions.gradient
+								const { colorStops, type } = QROptions.cornersDotOptions.gradient;
 								dispatch({
 									type: "SET_CORNERSDOTOPTIONS",
-									payload: { ...QROptions.cornersDotOptions, gradient: { colorStops: colorStops, type: type, rotation: Number(value) } },
-								})
-							}
-							}
+									payload: {
+										...QROptions.cornersDotOptions,
+										gradient: { colorStops: colorStops, type: type, rotation: Number(value) },
+									},
+								});
+							}}
 							max={180}
 							min={0}
 							step={1}

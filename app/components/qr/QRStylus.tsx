@@ -87,7 +87,7 @@ export default function QRStylus({ options }: { options: Partial<Options> }) {
 			className={`relative mb-4 grid w-full grid-cols-1 justify-items-center gap-4 bg-sidebar-foreground py-6 ${!theme && "dark"}`}
 		>
 			<div ref={qrRef}></div>
-			{!isReady && <Skeleton className="w-[300px] h-[300px]" />}
+			{!isReady && <Skeleton className="h-[300px] w-[300px]" />}
 			<Button variant={"secondary"} onClick={handleDownload} type="button" disabled={!isReady}>
 				Descargar
 			</Button>

@@ -9,8 +9,8 @@ import OptionSelection from "~/components/forms/OptionSelection";
 import QRStylus from "~/components/qr/QRStylus";
 import { initialQROptions, qrOptionsReducer } from "~/components/qr/qrReducer";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import type { UrlSchemaType } from "~/lib/schemas";
 import { SidebarTrigger } from "~/components/ui/sidebar";
+import type { UrlSchemaType } from "~/lib/schemas";
 
 export default function Url() {
 	const [formData, setFormData] = useState<UrlSchemaType | null>(null);
@@ -24,8 +24,8 @@ export default function Url() {
 
 	return (
 		<main className="grid min-h-screen w-full grid-cols-1 gap-4 bg-stone-100 py-2 md:grid-cols-2">
-			<Card className="h-fit block md:hidden py-1 rounded-none">
-				<SidebarTrigger className="w-12 h-12"/>
+			<Card className="block h-fit rounded-none py-1 md:hidden">
+				<SidebarTrigger className="h-12 w-12" />
 			</Card>
 			<Card className="p-4">
 				<QRStylus options={QROptions} />

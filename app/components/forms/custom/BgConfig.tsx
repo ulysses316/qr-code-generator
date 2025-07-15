@@ -5,9 +5,9 @@ import { colorOptionsReducer } from "~/components/forms/ColorReducer";
 import type { QRAction } from "~/components/qr/qrReducer";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Label } from "~/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Slider } from "~/components/ui/slider";
 import ColorsPicker from "../ColorsPicker";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 
 type FormCustomAwesomeProps = {
 	QROptions: Partial<Options>;
@@ -29,7 +29,6 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 			return;
 		}
 		console.log(prevGradient.type);
-
 
 		dispatch({
 			type: "SET_BACKGROUNDOPTIONS",
@@ -89,7 +88,7 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 						});
 					}}
 				>
-					<SelectTrigger className="w-full col-span-2">
+					<SelectTrigger className="col-span-2 w-full">
 						<SelectValue placeholder="Nivel de corrección" />
 					</SelectTrigger>
 					<SelectContent>
@@ -108,7 +107,7 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 				<Select
 					value={QROptions.backgroundOptions?.gradient?.type}
 					onValueChange={(value) => {
-						const colorStops = QROptions.backgroundOptions?.gradient?.colorStops
+						const colorStops = QROptions.backgroundOptions?.gradient?.colorStops;
 						if (!colorStops) return;
 						dispatch({
 							type: "SET_BACKGROUNDOPTIONS",
@@ -116,7 +115,7 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 						});
 					}}
 				>
-					<SelectTrigger className="w-full col-span-2">
+					<SelectTrigger className="col-span-2 w-full">
 						<SelectValue placeholder="Nivel de corrección" />
 					</SelectTrigger>
 					<SelectContent>
@@ -132,13 +131,15 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 							value={[QROptions.backgroundOptions?.gradient?.rotation || 0]}
 							onValueChange={(value) => {
 								if (!QROptions?.backgroundOptions?.gradient) return;
-								const { colorStops, type } = QROptions.backgroundOptions.gradient
+								const { colorStops, type } = QROptions.backgroundOptions.gradient;
 								dispatch({
 									type: "SET_BACKGROUNDOPTIONS",
-									payload: { ...QROptions.backgroundOptions, gradient: { colorStops: colorStops, type: type, rotation: Number(value) } },
-								})
-							}
-							}
+									payload: {
+										...QROptions.backgroundOptions,
+										gradient: { colorStops: colorStops, type: type, rotation: Number(value) },
+									},
+								});
+							}}
 							max={180}
 							min={0}
 							step={1}
