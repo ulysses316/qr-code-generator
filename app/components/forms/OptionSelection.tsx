@@ -1,5 +1,5 @@
 import { ChevronRight, Circle, Image, Palette, Settings, Square, TableOfContents, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Card } from "../ui/card";
 
@@ -10,26 +10,49 @@ type OptionSelectionProps = {
 	children?: React.ReactNode;
 };
 
-export default function OptionSelection({ title, description, icon, children }: OptionSelectionProps) {
-	const [documentExist, setDocumentExist] = useState<boolean>(false);
-	const [showModal, setShowModal] = useState<boolean>(false);
-	const icons = {
-		settings: Settings,
-		circle: Circle,
-		square: Square,
-		palette: Palette,
-		image: Image,
-		content: TableOfContents,
-	};
+const icons = {
+	settings: Settings,
+	circle: Circle,
+	square: Square,
+	palette: Palette,
+	image: Image,
+	content: TableOfContents,
+};
 
+export default function OptionSelection({ title, description, icon, children }: OptionSelectionProps) {
+	const cardRef = useRef<HTMLDivElement | null>(null);
+	const [showModal, setShowModal] = useState<boolean>(false);
 	const IconComponent = icons[icon];
 
 	useEffect(() => {
-		setDocumentExist(true);
-		return () => {
-			setDocumentExist(false);
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape") {
+				setShowModal(false);
+			}
 		};
-	}, []);
+		if (showModal) {
+			window.addEventListener("keydown", handleKeyDown);
+		}
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [showModal]);
+
+	useEffect(() => {
+		const handleClickOutside = (e: MouseEvent) => {
+			if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+				setShowModal(false);
+			}
+		};
+
+		if (showModal) {
+			document.addEventListener("mousedown", handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [showModal]);
 
 	return (
 		<>
@@ -52,12 +75,17 @@ export default function OptionSelection({ title, description, icon, children }: 
 			</div>
 
 			{children &&
-				documentExist &&
+				typeof window !== "undefined" &&
 				createPortal(
 					<div
+						role="dialog"
+						aria-modal={true}
 						className={`fixed top-0 left-0 z-10 flex h-screen w-screen items-center justify-center p-4 transition-all duration-300 ${showModal ? "translate-x-0" : "translate-x-full"}`}
 					>
-						<Card className="absolute top-0 right-0 h-full w-auto overflow-y-auto pt-10 lg:min-w-4/12 xl:min-w-5/12">
+						<Card
+							ref={cardRef}
+							className="absolute top-0 right-0 h-full w-auto overflow-y-auto pt-10 lg:min-w-4/12 xl:min-w-5/12"
+						>
 							{children}
 							<div
 								className="absolute top-2 right-2 flex aspect-square w-8 cursor-pointer items-center justify-center rounded-lg border-2 border-black"
