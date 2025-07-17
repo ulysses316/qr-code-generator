@@ -97,10 +97,10 @@ export default function QRStylus({ options }: { options: Partial<Options> }) {
 					type="multiple"
 					variant="outline"
 				>
-					<ToggleGroupItem onClick={() => setTheme(true)} value="bold" aria-label="Toggle bold">
+					<ToggleGroupItem onClick={() => setTheme(false)} value="bold" aria-label="Toggle bold">
 						<Sun className="h-4 w-4" />
 					</ToggleGroupItem>
-					<ToggleGroupItem onClick={() => setTheme(false)} value="italic" aria-label="Toggle italic">
+					<ToggleGroupItem onClick={() => setTheme(true)} value="italic" aria-label="Toggle italic">
 						<Moon className="h-4 w-4" />
 					</ToggleGroupItem>
 				</ToggleGroup>

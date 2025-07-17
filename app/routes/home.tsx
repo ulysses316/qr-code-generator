@@ -1,14 +1,12 @@
-import QRStylus from "~/components/qr/QRStylus";
-
 export function meta() {
-	return [{ title: "New React Router App" }, { name: "description", content: "Welcome to React Router!" }];
+	return [{ title: "QR Code Generator" }, { name: "description", content: "Aplicacion para crear QRs" }];
 }
 
 export default function Home() {
 	return (
 		<main className="flex h-screen w-full items-center justify-center">
-			<div className="h-screen w-full">
-				<QRStylus options={{ data: "hola como estas" }} />
+			<div className="h-screen w-full flex justify-center items-center">
+				<img className="w-full sm:w-96 aspect-square" src="/qr-code.png" alt="" />				
 			</div>
 		</main>
 	);
