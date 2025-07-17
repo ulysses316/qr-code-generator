@@ -78,8 +78,8 @@ export default function OptionSelection({ title, description, icon, children }: 
 				typeof window !== "undefined" &&
 				createPortal(
 					<div
-						role="dialog"
-						aria-modal={true}
+						// role="dialog"
+						// aria-modal={true}
 						className={`fixed top-0 left-0 z-10 flex h-screen w-screen items-center justify-center p-4 transition-all duration-300 ${showModal ? "translate-x-0" : "translate-x-full"}`}
 					>
 						<Card

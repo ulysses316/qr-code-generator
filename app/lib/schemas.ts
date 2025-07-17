@@ -10,9 +10,12 @@ export const UrlSchema = v.object({
 export type UrlSchemaType = v.InferOutput<typeof UrlSchema>;
 
 export const WifiSquema = v.object({
-	ssid: v.string(),
+	type: v.string(),
+	name: v.string(),
 	password: v.string(),
 });
+
+export type WifiSquemaType = v.InferOutput<typeof WifiSquema>;
 
 export const VCardSquema = v.object({
 	name: v.string(),

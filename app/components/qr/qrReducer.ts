@@ -22,7 +22,7 @@ export const initialQROptions: Partial<Options> = {
 	width: 300,
 	height: 300,
 	margin: 0,
-	data: "https://www.example.com/",
+	data: "",
 	image: "",
 	qrOptions: {
 		typeNumber: 0,

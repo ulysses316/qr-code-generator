@@ -1,15 +1,4 @@
-import {
-	BookText,
-	CalendarCheck2,
-	Home,
-	IdCard,
-	IdCardLanyard,
-	Link2,
-	Mail,
-	MapPin,
-	MessageCircleMore,
-	Wifi,
-} from "lucide-react";
+import { BookText, CalendarCheck2, Home, IdCard, Link2, Mail, MapPin, MessageCircleMore, Wifi } from "lucide-react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -42,11 +31,6 @@ const items = [
 		title: "VCard",
 		url: "#",
 		icon: IdCard,
-	},
-	{
-		title: "MeCard",
-		url: "#",
-		icon: IdCardLanyard,
 	},
 	{
 		title: "SMS",
