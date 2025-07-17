@@ -25,36 +25,19 @@ export const VCardSquema = v.object({
 	wifi: v.array(WifiSquema),
 });
 
-export const MeCardSquema = v.object({
-	name: v.string(),
-	email: v.string(),
-	phone: v.string(),
-	url: v.string(),
-	wifi: v.array(WifiSquema),
-	vcard: v.array(VCardSquema),
-});
-
-export const SMSSquema = v.object({
-	number: v.string(),
-	message: v.string(),
-});
-
-export const EmailSquema = v.object({
-	name: v.string(),
-	email: v.string(),
-	password: v.string(),
-	code: v.string(),
-});
-
 export const GeoSquema = v.object({
-	lat: v.number(),
-	lng: v.number(),
+	lat: v.pipe(v.string(), v.regex(/^[+-]?([1-8]?\d(\.\d+)?|90(\.0+)?$)/, "Latitud inválida")),
+	lng: v.pipe(v.string(), v.regex(/^[+-]?((1[0-7]\d|0?\d{1,2})(\.\d+)?|180(\.0+)?$)/, "Longitud inválida")),
 });
+
+export type GeoSquemaType = v.InferOutput<typeof GeoSquema>;
 
 export const EventSchema = v.object({
-	name: v.string(),
+	title: v.string(),
+	description: v.string(),
+	location: v.string(),
+	date_start: v.date(),
+	date_end: v.date(),
 });
 
-export const TextSquema = v.object({
-	text: v.string(),
-});
+export type EventSchemaType = v.InferOutput<typeof EventSchema>;

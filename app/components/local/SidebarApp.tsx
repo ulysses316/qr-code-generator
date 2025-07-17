@@ -1,4 +1,4 @@
-import { BookText, CalendarCheck2, Home, IdCard, Link2, Mail, MapPin, MessageCircleMore, Wifi } from "lucide-react";
+import { BookText, CalendarCheck2, Home, IdCard, Link2, MapPin, Wifi } from "lucide-react";
 import {
 	Sidebar,
 	SidebarContent,
@@ -33,28 +33,18 @@ const items = [
 		icon: IdCard,
 	},
 	{
-		title: "SMS",
-		url: "#",
-		icon: MessageCircleMore,
-	},
-	{
-		title: "Email",
-		url: "#",
-		icon: Mail,
-	},
-	{
 		title: "Geo",
-		url: "#",
+		url: "/geo",
 		icon: MapPin,
 	},
 	{
 		title: "Evento",
-		url: "#",
+		url: "/event",
 		icon: CalendarCheck2,
 	},
 	{
 		title: "Text",
-		url: "#",
+		url: "/text",
 		icon: BookText,
 	},
 ];

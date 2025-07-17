@@ -162,8 +162,6 @@ export default function FormCustom({ QROptions, dispatch }: FormCustomAwesomePro
 						type="checkbox"
 						checked={QROptions.imageOptions?.hideBackgroundDots}
 						onChange={(e) => {
-							console.log(e.target.checked);
-
 							dispatch({
 								type: "SET_IMAGEOPTIONS",
 								payload: { ...QROptions.imageOptions, hideBackgroundDots: e.target.checked },

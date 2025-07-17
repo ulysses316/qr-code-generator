@@ -6,5 +6,8 @@ export default [
 		route("/url", "routes/url.tsx"),
 		route("/wifi", "routes/wifi.tsx"),
 		route("/vcard", "routes/vcard.tsx"),
+		route("/geo", "routes/geo.tsx"),
+		route("/event", "routes/event.tsx"),
+		route("/text", "routes/text.tsx"),
 	]),
 ] satisfies RouteConfig;

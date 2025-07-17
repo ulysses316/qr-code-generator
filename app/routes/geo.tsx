@@ -4,21 +4,20 @@ import BgConfig from "~/components/forms/custom/BgConfig";
 import DotsConfig from "~/components/forms/custom/DotsConfig";
 import ImageQRConfir from "~/components/forms/custom/ImageQRConfir";
 import SquareConfig from "~/components/forms/custom/SquareConfig";
-import FormWifi from "~/components/forms/data/FormWifi";
+import FormGeo from "~/components/forms/data/FormGeo";
 import OptionSelection from "~/components/forms/OptionSelection";
 import QRStylus from "~/components/qr/QRStylus";
 import { initialQROptions, qrOptionsReducer } from "~/components/qr/qrReducer";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import type { WifiSquemaType } from "~/lib/schemas";
+import type { GeoSquemaType } from "~/lib/schemas";
 
-export default function Wifi() {
-	const [formData, setFormData] = useState<WifiSquemaType | null>(null);
+export default function Url() {
+	const [formData, setFormData] = useState<GeoSquemaType | null>(null);
 	const [QROptions, dispatch] = useReducer(qrOptionsReducer, initialQROptions);
 
 	useEffect(() => {
 		if (formData) {
-			const base = `WIFI:T:${formData.type};S:${formData.name};P:${formData.password};;`;
-			dispatch({ type: "SET_DATA", payload: base });
+			dispatch({ type: "SET_DATA", payload: `geo:${formData.lat},${formData.lng}` });
 		}
 	}, [formData]);
 
@@ -33,7 +32,7 @@ export default function Wifi() {
 					<p className="text-sm">Haz clic en cualquier opción para personalizar tu código QR</p>
 				</div>
 				<OptionSelection title="Contenido del QR" description="El contenido que almacenara tu QR" icon="content">
-					<FormWifi setForm={setFormData} />
+					<FormGeo setForm={setFormData} />
 				</OptionSelection>
 				<OptionSelection
 					title="Configuracuion basica"
@@ -78,16 +77,8 @@ export default function Wifi() {
 				<CardContent className="space-y-3">
 					<div className="grid grid-cols-2 gap-4 text-sm">
 						<div>
-							<span className="font-medium text-gray-700">Nombre de la red: </span>
-							{formData?.name}
-						</div>
-						<div>
-							<span className="font-medium text-gray-700">Contraseña: </span>
-							{formData?.password}
-						</div>
-						<div>
-							<span className="font-medium text-gray-700">Tipo: </span>
-							{formData?.type}
+							<span className="font-medium text-gray-700">Contenido: </span>
+							{formData?.lat}, {formData?.lng}
 						</div>
 					</div>
 				</CardContent>

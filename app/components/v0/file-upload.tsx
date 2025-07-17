@@ -83,7 +83,6 @@ export function FileUpload({ accept, setImage }: FileUploadProps) {
   const handleUpload = async () => {
     if (file) {
       const dataUrl = await convertImageToDataUrl(file)
-      console.log(dataUrl);
 
       setImage({ type: "SET_IMAGE", payload: dataUrl })
     }

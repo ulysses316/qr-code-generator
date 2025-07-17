@@ -28,7 +28,6 @@ export default function BgConfig({ QROptions, dispatch }: FormCustomAwesomeProps
 			console.error("Gradient type is missing!");
 			return;
 		}
-		console.log(prevGradient.type);
 
 		dispatch({
 			type: "SET_BACKGROUNDOPTIONS",

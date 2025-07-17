@@ -61,7 +61,8 @@
 				"useJsxKeyInIterable": "error",
 				"useValidForDirection": "error",
 				"useValidTypeof": "error",
-				"useYield": "error"
+				"useYield": "error",
+				"noUnusedImports": "error"
 			},
 			"security": {
 				"noDangerouslySetInnerHtmlWithChildren": "error"
