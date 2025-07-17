@@ -3,7 +3,6 @@ pre-commit:
   jobs:
     - name: Linter fix
       run: bun lint:fix
-           git add .
 
     - name: Create build directory
       run: bun run build
