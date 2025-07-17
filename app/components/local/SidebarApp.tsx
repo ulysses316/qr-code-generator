@@ -29,7 +29,7 @@ const items = [
 	},
 	{
 		title: "VCard",
-		url: "#",
+		url: "/vcard",
 		icon: IdCard,
 	},
 	{
