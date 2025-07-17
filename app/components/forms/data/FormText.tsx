@@ -27,8 +27,11 @@ export default function FormText({ setForm }: FormUrlProps) {
 	return (
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
-				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardTitle>Crea el QR de un texto</CardTitle>
+				<CardDescription>
+					Se libre de poner el formato que quieras, solo ten en cuenta que mientras mas largo sea el texto mas
+					complicado sera el QR
+				</CardDescription>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
 				<Label>Texto libre</Label>

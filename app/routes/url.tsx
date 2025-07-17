@@ -24,6 +24,7 @@ export default function Url() {
 	return (
 		<main className="grid min-h-screen w-full grid-cols-1 gap-4 bg-stone-100 py-2 md:grid-cols-2">
 			<Card className="p-4">
+				<h1 className="font-bold text-2xl">URL</h1>
 				<QRStylus options={QROptions} />
 			</Card>
 			<Card className="row-span-2 p-4">

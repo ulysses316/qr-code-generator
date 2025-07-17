@@ -32,10 +32,24 @@ export default function FormGeo({ setForm }: FormUrlProps) {
 	return (
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
-				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardTitle>Crea el QR de una ubicacion</CardTitle>
+				<CardDescription>Abrira en la aplicacion de mapas perferida del usuario</CardDescription>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
+				<div className="col-span-2 rounded-lg border border-blue-200 bg-blue-50 p-3">
+					<h4 className="mb-1 font-medium text-blue-900 text-sm">📝 Nota</h4>
+					<p className="text-blue-700 text-xs">
+						¿Como puedo obtener la latitud y longitud en google maps? da{" "}
+						<a
+							className="underline"
+							href="https://support.google.com/maps/answer/18539?hl=es&co=GENIE.Platform%3DAndroid"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							click aqui
+						</a>
+					</p>
+				</div>
 				<Label>Latitud</Label>
 				<form.Field name="lat">
 					{(field) => (

@@ -32,7 +32,7 @@ export default function FormUrl({ setForm }: FormUrlProps) {
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
 				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardDescription>Pon una URL valida para crear su QR</CardDescription>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
 				<Label>URL</Label>

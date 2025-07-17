@@ -1,6 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { Button } from "~/components/ui/button";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
@@ -34,8 +34,7 @@ export default function FormWifi({ setForm }: FormUrlProps) {
 	return (
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
-				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardTitle>Crea el QR para conectarte a una red wifi</CardTitle>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
 				<Label>Nombre de la red Wifi</Label>

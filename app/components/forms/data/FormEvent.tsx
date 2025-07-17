@@ -40,8 +40,8 @@ export default function FormEvent({ setForm }: FormUrlProps) {
 	return (
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
-				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardTitle>Crea el QR de un evento</CardTitle>
+				<CardDescription>El evento se guardara en la agenda del usuario.</CardDescription>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
 				<Label>Titulo</Label>

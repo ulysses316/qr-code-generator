@@ -35,8 +35,8 @@ export default function FormVCard({ setForm }: FormUrlProps) {
 	return (
 		<form onSubmit={handdleSubmit}>
 			<CardHeader>
-				<CardTitle>Crea el QR de una URL</CardTitle>
-				<CardDescription>Escoge una URL para crear tu URL</CardDescription>
+				<CardTitle>Crea el QR de una VCard</CardTitle>
+				<CardDescription>Perfecto para compartir tu contacto a otras personas</CardDescription>
 			</CardHeader>
 			<CardContent className="mt-4 flex flex-col gap-4">
 				<Label>Nombre</Label>
