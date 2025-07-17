@@ -85,11 +85,11 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 				<div className="col-span-2">
 					<Label className="mb-1">Forma de los puntos</Label>
 					<Select
-						value={QROptions.dotsOptions?.type}
+						value={QROptions.cornersSquareOptions?.type}
 						onValueChange={(value) => {
 							dispatch({
 								type: "SET_CORNERSSQUAREOPTIONS",
-								payload: { ...QROptions.dotsOptions, type: value as CornerSquareType },
+								payload: { ...QROptions.cornersSquareOptions, type: value as CornerSquareType },
 							});
 						}}
 					>
@@ -152,11 +152,11 @@ export default function SquareConfig({ QROptions, dispatch }: FormCustomAwesomeP
 				<div className="col-span-2">
 					<Label className="mb-1">Forma de los puntos</Label>
 					<Select
-						value={QROptions.dotsOptions?.type}
+						value={QROptions.cornersDotOptions?.type}
 						onValueChange={(value) => {
 							dispatch({
 								type: "SET_CORNERSDOTOPTIONS",
-								payload: { ...QROptions.dotsOptions, type: value as DotType },
+								payload: { ...QROptions.cornersDotOptions, type: value as DotType },
 							});
 						}}
 					>
