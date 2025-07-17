@@ -3,7 +3,6 @@ import { Button } from "~/components/ui/button";
 import { CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 
 type FormUrlProps = {
 	setForm: (value: Record<string, string>) => void;
@@ -20,7 +19,7 @@ export default function FormVCard({ setForm }: FormUrlProps) {
 			email: "",
 			url: "",
 			address: "",
-			note: ""
+			note: "",
 		},
 		onSubmit: ({ value }) => {
 			setForm(value);
